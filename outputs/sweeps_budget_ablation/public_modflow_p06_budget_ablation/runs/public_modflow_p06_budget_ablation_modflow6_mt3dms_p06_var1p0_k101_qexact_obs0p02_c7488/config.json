@@ -1,0 +1,290 @@
+{
+  "name": "public_modflow_p06_budget_ablation_modflow6_mt3dms_p06_var1p0_k101_qexact_obs0p02_c7488",
+  "domain": {
+    "nx": 31,
+    "ny": 31,
+    "lx": 27900.0,
+    "ly": 27900.0
+  },
+  "physics": {
+    "h_left": 0.0,
+    "h_right": 0.0,
+    "dispersion": 100.0,
+    "dt": 2.5,
+    "steps": 1460,
+    "sources": [
+      {
+        "name": "injection_concentration",
+        "i": 15,
+        "j": 15,
+        "value": 1.5238095238095237,
+        "profile": "boxcar",
+        "start_step": 1,
+        "end_step": 365
+      }
+    ],
+    "flow_wells": [
+      {
+        "name": "inject_phase",
+        "i": 15,
+        "j": 15,
+        "value": 86400.0,
+        "profile": "boxcar",
+        "start_step": 1,
+        "end_step": 365
+      },
+      {
+        "name": "extract_phase",
+        "i": 15,
+        "j": 15,
+        "value": -86400.0,
+        "profile": "boxcar",
+        "start_step": 366,
+        "end_step": 1460
+      }
+    ],
+    "flow_boundary": {
+      "mode": "perimeter_dirichlet",
+      "value": 0.0
+    }
+  },
+  "k_field": {
+    "model": "constant",
+    "seed": 101,
+    "k_min": 432.0,
+    "log_variance": 1.0
+  },
+  "quantum_solver": {
+    "type": "exact"
+  },
+  "transport_quantum": {
+    "mode": "operator_stepwise_hybrid",
+    "observation_stride": 20,
+    "store_trace_metrics": true,
+    "phase_observation_strides": {
+      "injection": 40,
+      "pumpback": 14
+    },
+    "phase_constraint_overrides": {
+      "pumpback": {
+        "pathline_monitoring": {
+          "type": "capture_monitoring",
+          "include_capture_wells": true,
+          "capture_ring_budget_fraction": 0.55,
+          "capture_corridor_budget_fraction": 0.3,
+          "capture_ring_radii_cells": [
+            2,
+            4,
+            7,
+            10
+          ],
+          "capture_ring_angle_count": 20
+        }
+      }
+    }
+  },
+  "sweep_options": {
+    "transport_constraint_strategy": "pathline_monitoring"
+  },
+  "mcr": {
+    "flow_methods": [
+      {
+        "name": "global",
+        "type": "global"
+      }
+    ],
+    "transport_methods": [
+      {
+        "name": "global",
+        "type": "global"
+      },
+      {
+        "name": "adaptive_eb_radial4",
+        "type": "regional_adaptive_eb",
+        "basis": "radial_gaussian",
+        "axis": "radial",
+        "center_i": 15,
+        "center_j": 15,
+        "n_regions": 4,
+        "basis_width_scale": 1.5,
+        "prior_std_scale": 1.5,
+        "min_constraints_per_region": 8,
+        "max_shrinkage": 0.95,
+        "stability_cv_threshold": 0.45,
+        "stability_cv_scale": 2.0
+      },
+      {
+        "name": "adaptive_eb_hlradial4",
+        "type": "regional_adaptive_eb",
+        "basis": "radial_hierarchical_lowrank",
+        "axis": "radial",
+        "center_i": 15,
+        "center_j": 15,
+        "n_regions": 4,
+        "basis_width_scale": 1.35,
+        "prior_std_scale": 1.5,
+        "hierarchical_levels": 4,
+        "low_rank_rank": 4,
+        "low_rank_energy": 0.97,
+        "low_rank_singular_power": 1.5,
+        "low_rank_min_prior_scale": 0.2,
+        "min_constraints_per_region": 8,
+        "max_shrinkage": 0.25,
+        "support_power": 1.25,
+        "stability_cv_threshold": 0.3,
+        "stability_cv_scale": 0.35,
+        "stability_level_threshold": 0.45,
+        "stability_level_scale": 0.15,
+        "anchor_jackknife_folds": 4,
+        "anchor_jackknife_min_train_constraints": 8,
+        "anchor_jackknife_ratio_threshold": 1.15,
+        "anchor_jackknife_ratio_scale": 0.18,
+        "anchor_jackknife_tail_quantile": 0.9,
+        "anchor_jackknife_tail_weight": 0.65,
+        "anchor_jackknife_excursion_threshold": 0.16,
+        "anchor_jackknife_excursion_scale": 0.06,
+        "stress_period_holdout_folds": 2,
+        "stress_period_holdout_min_train_constraints": 8,
+        "stress_period_holdout_ratio_threshold": 1.1,
+        "stress_period_holdout_ratio_scale": 0.12,
+        "stress_period_holdout_tail_quantile": 1.0,
+        "stress_period_holdout_tail_weight": 0.8,
+        "stress_period_holdout_excursion_threshold": 0.14,
+        "stress_period_holdout_excursion_scale": 0.05,
+        "validation_variance_scale": 1.5,
+        "validation_hard_gate_threshold": 0.0001,
+        "local_evidence_window": true,
+        "local_evidence_anchor_power": 1.25,
+        "local_evidence_temporal_power": 1.0,
+        "local_evidence_validation_power": 1.25,
+        "local_evidence_phase_aware": true,
+        "local_evidence_phase_power": 1.0,
+        "local_evidence_phase_bootstrap_support": 0.0,
+        "local_evidence_phase_bootstrap_support_injection": 1.0,
+        "local_evidence_phase_bootstrap_support_pumpback": 0.35,
+        "local_evidence_phase_ratio_support_threshold": 1.0,
+        "local_evidence_phase_ratio_support_scale": 0.05,
+        "local_evidence_phase_support_decay": 0.6,
+        "local_evidence_phase_transition_reset": true,
+        "local_evidence_group_smoothing_scale": 0.75,
+        "local_evidence_group_floor": 0.0,
+        "local_evidence_ratio_support_threshold": 1.0,
+        "local_evidence_ratio_support_scale": 0.05,
+        "local_evidence_min_peak": 0.045,
+        "local_evidence_latch_fallback": false
+      },
+      {
+        "name": "regional_radial4",
+        "type": "regional_bayesian",
+        "basis": "radial_gaussian",
+        "axis": "radial",
+        "center_i": 15,
+        "center_j": 15,
+        "n_regions": 4,
+        "basis_width_scale": 1.5,
+        "min_constraints_per_region": 8,
+        "prior_std_scale": 1.5
+      },
+      {
+        "name": "regional_hlradial4",
+        "type": "regional_bayesian",
+        "basis": "radial_hierarchical_lowrank",
+        "axis": "radial",
+        "center_i": 15,
+        "center_j": 15,
+        "n_regions": 4,
+        "basis_width_scale": 1.35,
+        "prior_std_scale": 1.5,
+        "hierarchical_levels": 4,
+        "low_rank_rank": 4,
+        "low_rank_energy": 0.97,
+        "low_rank_singular_power": 1.5,
+        "low_rank_min_prior_scale": 0.2,
+        "min_constraints_per_region": 8
+      }
+    ],
+    "flow_constraint_sets": [
+      {
+        "name": "boundary",
+        "type": "dirichlet_boundary"
+      },
+      {
+        "name": "corners",
+        "type": "corners"
+      },
+      {
+        "name": "sources",
+        "type": "sources"
+      },
+      {
+        "name": "random4",
+        "type": "random_internal",
+        "m": 4
+      },
+      {
+        "name": "random16",
+        "type": "random_internal",
+        "m": 16
+      },
+      {
+        "name": "random64",
+        "type": "random_internal",
+        "m": 64
+      }
+    ],
+    "transport_constraint_sets": [
+      {
+        "name": "sources",
+        "type": "sources"
+      },
+      {
+        "name": "pathline_monitoring4",
+        "type": "pathline_monitoring",
+        "m": 4
+      },
+      {
+        "name": "pathline_monitoring16",
+        "type": "pathline_monitoring",
+        "m": 16
+      },
+      {
+        "name": "pathline_monitoring64",
+        "type": "pathline_monitoring",
+        "m": 64
+      }
+    ],
+    "observation_noise": {
+      "relative_std": 0.02,
+      "absolute_std": 0.0,
+      "seed": 7488
+    }
+  },
+  "metrics": {
+    "estimate_condition_numbers": false
+  },
+  "output": {
+    "root": "outputs"
+  },
+  "benchmark": {
+    "name": "modflow6_mt3dms_p06",
+    "label": "MODFLOW 6 P06 Injection-Extraction Well",
+    "family": "public_modflow6_mt3dms",
+    "description": "Official MODFLOW 6 MT3DMS Problem 6 benchmark with well reversal from injection to extraction.",
+    "source_type": "official_modflow6_example",
+    "source_id": "ex-gwt-mt3dms-p06",
+    "source_title": "MT3DMS Problem 6",
+    "source_url": "https://modflow6-examples.readthedocs.io/en/latest/_examples/ex-gwt-mt3dms-p06.html",
+    "reference_citation": "MODFLOW 6 Examples ex-gwt-mt3dms-p06; benchmark origin in El-Kadi (1988) and Zheng (1993).",
+    "adaptation_type": "structured_public_adapter",
+    "adaptation_notes": "Preserves the official 31x31 radial-domain geometry, perimeter constant-head drainage, 2.5-year injection followed by 7.5-year extraction at the same well, and the immediate steady-flow assumption within each stress period; the surrogate uses a piecewise-steady transient well schedule and a pore-volume-normalized concentration source during the injection phase."
+  },
+  "transport_diagnostics": {
+    "control_plane_fractions": [
+      0.58,
+      0.7,
+      0.82,
+      0.9
+    ],
+    "record_stride": 20
+  }
+}

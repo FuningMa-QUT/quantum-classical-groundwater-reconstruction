@@ -1,0 +1,117 @@
+{
+  "name": "public_modflow_p06_full",
+  "base_experiment": {
+    "name": "base_public_modflow_benchmark",
+    "domain": {
+      "nx": 31,
+      "ny": 31,
+      "lx": 300.0,
+      "ly": 300.0
+    },
+    "physics": {
+      "h_left": 0.0,
+      "h_right": 0.0,
+      "dispersion": 5.0,
+      "dt": 1.0,
+      "steps": 27,
+      "sources": [
+        {"i": 15, "j": 15, "value": 3.3333333333333335}
+      ],
+      "flow_wells": [
+        {"i": 15, "j": 15, "value": 100.0}
+      ]
+    },
+    "k_field": {
+      "model": "constant",
+      "seed": 101,
+      "k_min": 1.0
+    },
+    "quantum_solver": {
+      "type": "exact"
+    },
+    "transport_quantum": {
+      "mode": "operator_stepwise_hybrid",
+      "observation_stride": 10,
+      "store_trace_metrics": true
+    },
+    "sweep_options": {
+      "transport_constraint_strategy": "pathline_monitoring"
+    },
+    "mcr": {
+      "flow_methods": [
+        {"name": "global", "type": "global"}
+      ],
+      "transport_methods": [
+        {"name": "global", "type": "global"},
+        {
+          "name": "adaptive_eb_x6",
+          "type": "regional_adaptive_eb",
+          "basis": "x_gaussian",
+          "axis": "x",
+          "n_regions": 6,
+          "prior_std_scale": 1.5,
+          "min_constraints_per_region": 4,
+          "max_shrinkage": 0.95,
+          "stability_cv_threshold": 0.45,
+          "stability_cv_scale": 2.0
+        },
+        {
+          "name": "regional_x6",
+          "type": "regional_bayesian",
+          "basis": "x_gaussian",
+          "axis": "x",
+          "n_regions": 6,
+          "prior_std_scale": 1.5
+        }
+      ]
+    },
+    "metrics": {
+      "estimate_condition_numbers": false
+    },
+    "output": {
+      "root": "outputs"
+    }
+  },
+  "sweep": {
+    "benchmark_cases": [
+      "modflow6_mt3dms_p06"
+    ],
+    "heterogeneity": {
+      "log_variances": [1.0],
+      "seeds": [101]
+    },
+    "quantum_noise_levels": [
+      {
+        "name": "exact",
+        "solver": {"type": "exact"}
+      },
+      {
+        "name": "moderate_noise",
+        "solver": {
+          "type": "noisy_state",
+          "shots": 8000,
+          "amplitude_noise_std": 0.0001,
+          "relative_noise_std": 0.01,
+          "sign_flip_probability": 0.0
+        }
+      },
+      {
+        "name": "high_noise",
+        "solver": {
+          "type": "noisy_state",
+          "shots": 5000,
+          "amplitude_noise_std": 0.0002,
+          "relative_noise_std": 0.02,
+          "sign_flip_probability": 0.0
+        }
+      }
+    ],
+    "observation_noise_relative": [0.0, 0.02, 0.05],
+    "observation_noise_absolute": 0.0,
+    "constraint_counts": [4, 16, 64],
+    "constraint_seed_base": 6100
+  },
+  "output": {
+    "root": "outputs/sweeps_p06"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "experiment": "scenario_complex_stress",
+  "output_dir": "outputs\\scenario_complex_stress",
+  "metrics_csv": "outputs\\scenario_complex_stress\\metrics.csv",
+  "transport_reference_trace_csv": "outputs\\scenario_complex_stress\\transport_reference_trace.csv",
+  "n_metric_rows": 6,
+  "fields": [
+    "concentration_hybrid72_global",
+    "concentration_hybrid72_global_prediction_std",
+    "concentration_hybrid72_global_scale_field",
+    "concentration_pathline24_global",
+    "concentration_pathline24_global_prediction_std",
+    "concentration_pathline24_global_scale_field",
+    "concentration_reference",
+    "concentration_sources_global",
+    "concentration_sources_global_prediction_std",
+    "concentration_sources_global_scale_field",
+    "concentration_state_normalized",
+    "head_boundary_global",
+    "head_boundary_global_prediction_std",
+    "head_boundary_global_scale_field",
+    "head_corners_global",
+    "head_corners_global_prediction_std",
+    "head_corners_global_scale_field",
+    "head_reference",
+    "head_sources_global",
+    "head_sources_global_prediction_std",
+    "head_sources_global_scale_field",
+    "head_state_normalized",
+    "k_field"
+  ]
+}

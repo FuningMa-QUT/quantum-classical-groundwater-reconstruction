@@ -1,0 +1,18 @@
+{
+  "cp58_peak_flux": 26902973.327356976,
+  "cp58_peak_time": 900.0,
+  "cp58_arrival_time_05": 200.0,
+  "cp58_arrival_time_50": 600.0,
+  "cp70_peak_flux": 875182.2773117382,
+  "cp70_peak_time": 900.0,
+  "cp70_arrival_time_05": 500.0,
+  "cp70_arrival_time_50": 800.0,
+  "cp82_peak_flux": 1174.7985269804935,
+  "cp82_peak_time": 900.0,
+  "cp82_arrival_time_05": 650.0,
+  "cp82_arrival_time_50": 850.0,
+  "cp90_peak_flux": 17.53973067708032,
+  "cp90_peak_time": 900.0,
+  "cp90_arrival_time_05": 700.0,
+  "cp90_arrival_time_50": 850.0
+}

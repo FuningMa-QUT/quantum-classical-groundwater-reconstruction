@@ -1,0 +1,10 @@
+protocol_name,protocol_label,observation_noise_relative,transport_total_observations,transport_budget_reference_total_observations,global_rmse,adaptive_rmse,adaptive_minus_global_rmse,adaptive_over_global_rmse_ratio
+modflow6_mt3dms_p06_uniform_reference,Uniform Reference,0.0,4800.0,,0.0899992548223438,0.0899992548223438,0.0,1.0
+modflow6_mt3dms_p06_uniform_reference,Uniform Reference,0.02,4800.0,,0.5757053491635393,0.1647144691337588,-0.4109908800297805,0.2861089780963087
+modflow6_mt3dms_p06_uniform_reference,Uniform Reference,0.05,4800.0,,0.733920201594062,0.2072350632392891,-0.5266851383547729,0.28236729659325105
+modflow6_mt3dms_p06,Full Phase Protocol,0.0,6848.0,,0.0587343918766283,0.0587343918766283,0.0,1.0
+modflow6_mt3dms_p06,Full Phase Protocol,0.02,6848.0,,0.3800728041927847,0.1328871502452973,-0.24718565394748743,0.3496360401990057
+modflow6_mt3dms_p06,Full Phase Protocol,0.05,6848.0,,0.1715941328089041,0.1601603622409272,-0.011433770567976898,0.933367357142041
+modflow6_mt3dms_p06_phaseprotocol_budgetmatched,Budget-Matched Phase Protocol,0.0,4800.0,4800.0,0.060116669499338,0.060116669499338,0.0,1.0
+modflow6_mt3dms_p06_phaseprotocol_budgetmatched,Budget-Matched Phase Protocol,0.02,4800.0,4800.0,0.3278757665489967,0.095308094686321,-0.23256767186267568,0.2906835588658196
+modflow6_mt3dms_p06_phaseprotocol_budgetmatched,Budget-Matched Phase Protocol,0.05,4800.0,4800.0,0.4816419675505064,0.4387189397294617,-0.042923027821044735,0.9108818775918988

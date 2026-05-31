@@ -1,0 +1,4 @@
+protocol_name,protocol_label,transport_total_observations,transport_budget_reference_total_observations,observation_budget_ratio_vs_uniform
+modflow6_mt3dms_p06_uniform_reference,Uniform Reference,4800.0,,1.0
+modflow6_mt3dms_p06,Full Phase Protocol,6848.0,,1.4266666666666667
+modflow6_mt3dms_p06_phaseprotocol_budgetmatched,Budget-Matched Phase Protocol,4800.0,4800.0,1.0

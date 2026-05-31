@@ -1,0 +1,14 @@
+{
+  "cp25_peak_flux": 147.1209945136895,
+  "cp25_peak_time": 25.6,
+  "cp25_arrival_time_05": 0.8,
+  "cp25_arrival_time_50": 2.4,
+  "cp50_peak_flux": 173.38864485676467,
+  "cp50_peak_time": 41.6,
+  "cp50_arrival_time_05": 4.0,
+  "cp50_arrival_time_50": 6.4,
+  "cp75_peak_flux": 170.29821869442023,
+  "cp75_peak_time": 41.6,
+  "cp75_arrival_time_05": 5.6000000000000005,
+  "cp75_arrival_time_50": 8.0
+}

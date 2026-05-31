@@ -1,0 +1,132 @@
+{
+  "name": "scenario_complex_stress",
+  "domain": {
+    "nx": 96,
+    "ny": 96,
+    "lx": 96.0,
+    "ly": 96.0
+  },
+  "physics": {
+    "h_left": 120.0,
+    "h_right": 10.0,
+    "dispersion": 0.035,
+    "dt": 0.08,
+    "steps": 520,
+    "sources": [
+      {
+        "i": 28,
+        "j": 12,
+        "value": 75.0,
+        "name": "upper_source"
+      },
+      {
+        "i": 66,
+        "j": 18,
+        "value": 55.0,
+        "name": "lower_source"
+      }
+    ]
+  },
+  "k_field": {
+    "model": "channel_lens_lognormal",
+    "seed": 417,
+    "correlation_length": 3.5,
+    "log_mean": 2.6,
+    "log_variance": 1.35,
+    "clip_min": 0.15,
+    "clip_max": 220.0,
+    "channel_multiplier": 12.0,
+    "background_multiplier": 0.65,
+    "channel_width_fraction": 0.045,
+    "channel_center_fraction": 0.47,
+    "amplitude_fraction": 0.22,
+    "meander_wavelength_fraction": 0.82,
+    "phase_fraction": 0.12,
+    "secondary_channel_scale": 0.55,
+    "secondary_channel_offset_fraction": 0.22,
+    "secondary_channel_shift_fraction": -0.23,
+    "transition_sigma": 1.2,
+    "lenses": [
+      {
+        "center_x_fraction": 0.58,
+        "center_y_fraction": 0.54,
+        "radius_x_fraction": 0.18,
+        "radius_y_fraction": 0.08,
+        "orientation_deg": -18.0,
+        "multiplier": 0.045
+      },
+      {
+        "center_x_fraction": 0.41,
+        "center_y_fraction": 0.28,
+        "radius_x_fraction": 0.12,
+        "radius_y_fraction": 0.06,
+        "orientation_deg": 34.0,
+        "multiplier": 0.1
+      }
+    ]
+  },
+  "quantum_solver": {
+    "type": "exact"
+  },
+  "transport_quantum": {
+    "mode": "operator_stepwise_hybrid",
+    "observation_stride": 2,
+    "store_trace_metrics": true
+  },
+  "mcr": {
+    "observation_noise": {
+      "relative_std": 0.0,
+      "absolute_std": 0.0,
+      "seed": 641
+    },
+    "flow_methods": [
+      {
+        "name": "global",
+        "type": "global"
+      }
+    ],
+    "transport_methods": [
+      {
+        "name": "global",
+        "type": "global"
+      }
+    ],
+    "flow_constraint_sets": [
+      {
+        "name": "boundary",
+        "type": "dirichlet_boundary"
+      },
+      {
+        "name": "corners",
+        "type": "corners"
+      },
+      {
+        "name": "sources",
+        "type": "sources"
+      }
+    ],
+    "transport_constraint_sets": [
+      {
+        "name": "sources",
+        "type": "sources"
+      },
+      {
+        "name": "pathline24",
+        "type": "pathline_monitoring",
+        "m": 24,
+        "include_sources": true
+      },
+      {
+        "name": "hybrid72",
+        "type": "source_control_plane_hybrid",
+        "m": 72
+      }
+    ]
+  },
+  "metrics": {
+    "estimate_condition_numbers": false
+  },
+  "output": {
+    "root": "outputs"
+  }
+}
